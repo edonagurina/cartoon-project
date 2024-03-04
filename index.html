@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>A sunny day</title>
+</head>
+
+<body>
+    <h1></h1>
+
+    <canvas id="myCanvas"></canvas>
+    <a href="https://edonagurina.github.io/" style="display: block; text-align: center;">Return to my portfolio here!</a>
+
+    <script>
+        const myCanvas = document.getElementById("myCanvas");
+        const ctx = myCanvas.getContext("2d");
+
+        myCanvas.width = window.innerWidth;
+        myCanvas.height = window.innerHeight - 50;
+
+        ctx.fillStyle = "rgb(173, 216, 230)";
+        ctx.fillRect(0, 0, myCanvas.width, myCanvas.height);
+
+        
+        ctx.fillStyle = "black";
+        ctx.font = "20px Arial";
+
+        const text = "What a beautiful day!";
+        const textWidth = ctx.measureText(text).width;
+        const textX = (myCanvas.width - textWidth) / 2;
+        const textY = 30;
+
+        ctx.fillText(text, textX, textY);
+
+
+        //house(rectangle)
+        ctx.fillStyle = "rgb(244, 187, 68)";
+        ctx.fillRect(150, 470, 200, 250);
+
+        ctx.strokeStyle = "black";
+        ctx.strokeRect(150, 470, 200, 250);
+
+        //chimney
+        ctx.fillStyle = "rgb(204, 85, 0)";
+        ctx.fillRect(290, 400, 20, 40);
+        ctx.strokeStyle = "black";
+        ctx.strokeRect(290, 400, 20, 40);
+
+        //roof
+        ctx.beginPath();
+        ctx.moveTo(250, 390); 
+        ctx.lineTo(150, 470); 
+        ctx.lineTo(350, 470); 
+        ctx.closePath(); 
+
+        ctx.fillStyle = "rgb(204, 85, 0)"; 
+        ctx.fill();
+
+        ctx.strokeStyle = "black"; 
+        ctx.stroke();
+
+        //window1
+        ctx.fillStyle = "rgb(182, 208, 226)";
+        ctx.fillRect(170, 490, 50, 50);
+        ctx.strokeStyle = "black"; 
+        ctx.strokeRect(170, 490, 50, 50);
+
+        ctx.beginPath();
+        ctx.moveTo(170, 515); 
+        ctx.lineTo(220, 515); 
+        ctx.closePath(); 
+
+        ctx.strokeStyle = "black"; 
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(195, 490); 
+        ctx.lineTo(195, 540); 
+        ctx.closePath(); 
+
+        ctx.strokeStyle = "black"; 
+        ctx.stroke();
+
+        //window2
+        ctx.fillStyle = "rgb(182, 208, 226)";
+        ctx.fillRect(270, 490, 50, 50);
+        ctx.strokeStyle = "black"; 
+        ctx.strokeRect(270, 490, 50, 50);
+
+        ctx.beginPath();
+        ctx.moveTo(270, 515); 
+        ctx.lineTo(320, 515); 
+        ctx.closePath(); 
+
+        ctx.strokeStyle = "black"; 
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(295, 490); 
+        ctx.lineTo(295, 540); 
+        ctx.closePath(); 
+
+        ctx.strokeStyle = "black"; 
+        ctx.stroke();
+
+        //door
+        ctx.fillStyle = "rgb(123, 24, 24)";
+        ctx.fillRect(214, 590, 60, 90);
+        ctx.strokeStyle = "black"; 
+        ctx.strokeRect(214, 590, 60, 90);
+        
+        //trees
+        function drawTree(x, y, trunkWidth, trunkHeight, foliageRadius) {
+           
+            // Draw trunk
+            ctx.fillStyle = "saddlebrown";
+            ctx.fillRect(x - trunkWidth / 2, y - trunkHeight, trunkWidth, trunkHeight);
+
+            // Draw foliage (circle in this example)
+            ctx.beginPath();
+            ctx.arc(x, y - trunkHeight - foliageRadius, foliageRadius, 0, 2 * Math.PI);
+            ctx.fillStyle = "forestgreen";
+            ctx.fill();
+        }
+
+        // Drawing multiple trees
+        drawTree(550, myCanvas.height, 50, 170, 90);  
+        drawTree(800, myCanvas.height, 70, 160, 70); 
+        drawTree(1200, myCanvas.height, 60, 190, 100); 
+
+        //grass
+        ctx.fillStyle = "green";
+        const grassHeight = 110;  
+        const minGrassHeight = 60;  
+        const bladeWidth = 15;    
+
+        for (let x = 0; x < myCanvas.width; x += bladeWidth) {
+            const randomHeight = minGrassHeight + Math.random() * (grassHeight - minGrassHeight);
+            ctx.fillRect(x, myCanvas.height - randomHeight, bladeWidth, randomHeight);
+        }
+
+        // Sun
+        const sunX = 100;
+        const sunY = 100;
+        const sunRadius = 50;
+
+        ctx.beginPath();
+        ctx.arc(sunX, sunY, sunRadius, 0, 2 * Math.PI);
+        ctx.fillStyle = "yellow";
+        ctx.fill();
+        ctx.strokeStyle = "yellow"; 
+        ctx.stroke();
+
+        
+        //clouds
+        const cloudRadius = 30; 
+        const cloudSpacing = 40; 
+
+        function drawCloud(x, y) {
+            ctx.beginPath();
+            ctx.arc(x, y, cloudRadius, 0, 2 * Math.PI);
+            ctx.arc(x + cloudRadius, y, cloudRadius, 0, 2 * Math.PI);
+            ctx.arc(x + cloudSpacing, y, cloudRadius, 0, 2 * Math.PI);
+            ctx.arc(x + 2 * cloudSpacing, y, cloudRadius, 0, 2 * Math.PI);
+            ctx.fillStyle = "white"; 
+            ctx.fill();
+            ctx.strokeStyle = "white"; 
+            ctx.stroke();
+        }
+
+        drawCloud(400, 150);
+        drawCloud(800, 200);
+        drawCloud(1200, 150);
+        drawCloud(1300, 180);
+
+    </script>
+</body>
+
+</html>
+
